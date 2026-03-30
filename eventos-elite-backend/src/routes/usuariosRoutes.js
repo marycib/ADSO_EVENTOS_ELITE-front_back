@@ -21,9 +21,11 @@ const {
 router.post("/login", validarLogin, loginUsuario);
 
 // POST /api/usuarios/crear
-// ✅ CORREGIDO: antes no tenía verificarToken ni verificarRol,
-//   cualquier visitante anónimo podía crear un usuario administrador.
-//   Ahora solo administradores autenticados pueden crear usuarios.
+// Registro público (sin token) — para Register.jsx
+router.post("/registro", validarUsuario, crearUsuario);
+
+
+// Crear usuario (solo admin) — para el CRUD de usuarios
 router.post(
   "/crear",
   verificarToken,

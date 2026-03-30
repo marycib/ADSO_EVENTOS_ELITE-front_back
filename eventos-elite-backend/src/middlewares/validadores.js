@@ -31,8 +31,9 @@ const validarUsuario = [
   body("nombreUsuario").trim().notEmpty().withMessage("El nombre de usuario es obligatorio").isLength({ min: 3 }).withMessage("Mínimo 3 caracteres"),
   body("correoElectronico").trim().notEmpty().withMessage("El correo es obligatorio").isEmail().withMessage("Correo electrónico inválido").normalizeEmail(),
   body("contrasena").notEmpty().withMessage("La contraseña es obligatoria").isLength({ min: 6 }).withMessage("Mínimo 6 caracteres"),
-  body("rol").notEmpty().withMessage("El rol es obligatorio").isIn(["administrador", "organizador", "asistente", "ponente"]).withMessage("Rol inválido"),
-  validar,
+ body("rol").optional().isIn(["administrador", "organizador", "asistente", "ponente"])
+  .withMessage("Rol inválido"),
+
 ];
 
 const validarActualizarUsuario = [

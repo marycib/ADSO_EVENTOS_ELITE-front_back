@@ -3,6 +3,9 @@ import { login } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
+import { Link } from "react-router-dom";
+
+
 
 export const Login = ({ setIsAuth }) => {
   const [correo, setCorreo] = useState("");
@@ -38,7 +41,6 @@ export const Login = ({ setIsAuth }) => {
       localStorage.setItem("rol", rol);
       localStorage.setItem("nombreUsuario", nombreUsuario);
 
-      // ✅ CORRECTO: pasar el objeto usuario completo para que App.jsx
       // actualice su estado en un solo paso, sin useEffect ni setState en cascada.
       setIsAuth(true, { token: res.token, rol, nombreUsuario });
 
@@ -54,7 +56,18 @@ export const Login = ({ setIsAuth }) => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-800">
       <div className="bg-gray-900/80 backdrop-blur-md p-8 rounded-2xl shadow-2xl w-96 border border-gray-700">
+       
+        <div className="mb-4">
+        <Link
+          to="/"
+          className="text-gray-400 hover:text-white text-sm flex items-center gap-1 transition"
+        >
+          ← Volver al inicio
+        </Link>
+      </div>
+       
         <h2 className="text-3xl font-bold text-white mb-2 text-center">
+
           Bienvenido 👋
         </h2>
         <p className="text-gray-400 text-center mb-6">

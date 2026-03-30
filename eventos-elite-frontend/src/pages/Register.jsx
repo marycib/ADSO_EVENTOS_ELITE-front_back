@@ -2,7 +2,7 @@ import { useState } from "react";
 import { register } from "../services/api";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-
+import { Link } from "react-router-dom"; 
 
 export const Register = () => {
   const [form, setForm] = useState({
@@ -38,17 +38,16 @@ export const Register = () => {
       setLoading(true);
 
       const res = await register({
-      nombre: form.nombre,
-      correoElectronico: form.correo,
-      contrasena: form.password,
-    });
+         nombreUsuario: form.nombre,
+        correoElectronico: form.correo,
+        contrasena: form.password,
+      });
 
-
-    toast.success(res.mensaje || "Usuario creado correctamente 🎉");
+      toast.success(res.mensaje || "Usuario creado correctamente 🎉");
 
       nav("/login");
     } catch (err) {
-       toast.error(err.message);
+      toast.error(err.message);
     } finally {
       setLoading(false);
     }
@@ -56,9 +55,15 @@ export const Register = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-gray-800">
-
       <div className="bg-gray-900/80 p-8 rounded-2xl shadow-xl w-96 border border-gray-700">
-
+        <div className="mb-4">
+          <Link
+            to="/"
+            className="text-gray-400 hover:text-white text-sm flex items-center gap-1 transition"
+          >
+            ← Volver al inicio
+          </Link>
+        </div>
         <h2 className="text-3xl font-bold text-white text-center mb-2">
           Crear cuenta 🚀
         </h2>
@@ -77,27 +82,21 @@ export const Register = () => {
           <input
             className="w-full p-3 mb-3 rounded bg-gray-800 text-white"
             placeholder="Nombre"
-            onChange={(e) =>
-              setForm({ ...form, nombre: e.target.value })
-            }
+            onChange={(e) => setForm({ ...form, nombre: e.target.value })}
           />
 
           <input
             className="w-full p-3 mb-3 rounded bg-gray-800 text-white"
             placeholder="Correo"
             type="email"
-            onChange={(e) =>
-              setForm({ ...form, correo: e.target.value })
-            }
+            onChange={(e) => setForm({ ...form, correo: e.target.value })}
           />
 
           <input
             className="w-full p-3 mb-3 rounded bg-gray-800 text-white"
             placeholder="Contraseña"
             type="password"
-            onChange={(e) =>
-              setForm({ ...form, password: e.target.value })
-            }
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
           />
 
           <input

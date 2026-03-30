@@ -12,7 +12,8 @@ export const removeToken = () => localStorage.removeItem("token");
 // Función base para todas las peticiones
 const handleResponse = async (res) => {
   const data = await res.json();
-  if (!res.ok) throw new Error(data.mensaje || data.msg || "Error en la petición");
+  if (!res.ok)
+    throw new Error(data.mensaje || data.msg || "Error en la petición");
   return data;
 };
 
@@ -20,8 +21,6 @@ const handleResponse = async (res) => {
 // AUTH / LOGIN
 // =============================
 
-// ✅ CORREGIDO: usa la variable API en lugar de URL hardcodeada
-// ✅ CORREGIDO: maneja tanto "mensaje" como "msg" en errores
 export const login = async (data) => {
   const res = await fetch(`${API}/usuarios/login`, {
     method: "POST",
@@ -34,7 +33,7 @@ export const login = async (data) => {
 };
 
 export const register = (data) =>
-  fetch(`${API}/usuarios/crear`, {
+  fetch(`${API}/usuarios/registro`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -57,7 +56,6 @@ export const crearEvento = (data) =>
     body: JSON.stringify(data),
   }).then(handleResponse);
 
-// ✅ CORREGIDO: indentación alineada con el resto de exports
 export const cancelarEvento = (id) =>
   fetch(`${API}/eventos/${id}/cancelar`, {
     method: "PATCH",
@@ -135,7 +133,7 @@ export const eliminarUsuario = (id) =>
     headers: { Authorization: `Bearer ${getToken()}` },
   }).then(handleResponse);
 
-  // =============================
+// =============================
 // ROLES
 // =============================
 export const getRoles = () =>
@@ -174,7 +172,7 @@ export const eliminarRol = (id) =>
     headers: { Authorization: `Bearer ${getToken()}` },
   }).then(handleResponse);
 
-  // =============================
+// =============================
 // PONENTES
 // =============================
 export const getPonentes = () =>
@@ -213,7 +211,7 @@ export const eliminarPonente = (id) =>
     headers: { Authorization: `Bearer ${getToken()}` },
   }).then(handleResponse);
 
-  // =============================
+// =============================
 // SESIONES
 // =============================
 export const getSesiones = () =>
@@ -252,8 +250,7 @@ export const eliminarSesion = (id) =>
     headers: { Authorization: `Bearer ${getToken()}` },
   }).then(handleResponse);
 
-
-  // =============================
+// =============================
 // EVENTOS
 // =============================
 export const getEventoPorId = (id) =>
@@ -277,7 +274,7 @@ export const eliminarEvento = (id) =>
     headers: { Authorization: `Bearer ${getToken()}` },
   }).then(handleResponse);
 
-  // =============================
+// =============================
 // INSCRIPCIONES - GESTIÓN (organizador/admin)
 // =============================
 export const getInscritosPorEvento = (eventoId) =>
