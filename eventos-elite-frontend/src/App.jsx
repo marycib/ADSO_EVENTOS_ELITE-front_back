@@ -12,6 +12,14 @@ import { UsuarioForm } from "./pages/UsuarioForm";
 import { UsuarioDetalle } from "./pages/UsuarioDetalle";
 import { NoAutorizado } from "./pages/NoAutorizado";
 import { NotFound } from "./pages/NotFound";
+import { Roles } from "./pages/Roles";
+import { RolForm } from "./pages/RolForm";
+import { Ponentes } from "./pages/Ponentes";
+import { PonenteForm } from "./pages/PonenteForm";
+import { Sesiones } from "./pages/Sesiones";
+import { SesionForm } from "./pages/SesionForm";
+import { InscritosEvento } from "./pages/InscritosEvento";
+
 
 export default function App() {
   // ✅ El estado guarda el usuario completo (id, nombre, rol), no solo isAuth.
@@ -101,6 +109,153 @@ export default function App() {
             )
           }
         />
+        {/* 🎤 PONENTES - organizador y admin */}
+<Route
+  path="/ponentes"
+  element={
+    isAuth ? (
+      ["organizador", "administrador"].includes(rol) ? (
+        <Ponentes />
+      ) : (
+        <Navigate to="/no-autorizado" />
+      )
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
+<Route
+  path="/ponentes/crear"
+  element={
+    isAuth ? (
+      ["organizador", "administrador"].includes(rol) ? (
+        <PonenteForm />
+      ) : (
+        <Navigate to="/no-autorizado" />
+      )
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
+<Route
+  path="/ponentes/editar/:id"
+  element={
+    isAuth ? (
+      ["organizador", "administrador"].includes(rol) ? (
+        <PonenteForm />
+      ) : (
+        <Navigate to="/no-autorizado" />
+      )
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
+
+{/* 🗓 SESIONES - organizador y admin */}
+<Route
+  path="/sesiones"
+  element={
+    isAuth ? (
+      ["organizador", "administrador"].includes(rol) ? (
+        <Sesiones />
+      ) : (
+        <Navigate to="/no-autorizado" />
+      )
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
+<Route
+  path="/sesiones/crear"
+  element={
+    isAuth ? (
+      ["organizador", "administrador"].includes(rol) ? (
+        <SesionForm />
+      ) : (
+        <Navigate to="/no-autorizado" />
+      )
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
+<Route
+  path="/sesiones/editar/:id"
+  element={
+    isAuth ? (
+      ["organizador", "administrador"].includes(rol) ? (
+        <SesionForm />
+      ) : (
+        <Navigate to="/no-autorizado" />
+      )
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
+
+{/* 👥 INSCRITOS POR EVENTO */}
+<Route
+  path="/eventos/:id/inscritos"
+  element={
+    isAuth ? (
+      ["organizador", "administrador"].includes(rol) ? (
+        <InscritosEvento />
+      ) : (
+        <Navigate to="/no-autorizado" />
+      )
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
+
+
+        <Route
+  path="/roles"
+  element={
+    isAuth ? (
+      rol === "administrador" ? (
+        <Roles />
+      ) : (
+        <Navigate to="/no-autorizado" />
+      )
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
+<Route
+  path="/roles/crear"
+  element={
+    isAuth ? (
+      rol === "administrador" ? (
+        <RolForm />
+      ) : (
+        <Navigate to="/no-autorizado" />
+      )
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
+<Route
+  path="/roles/editar/:id"
+  element={
+    isAuth ? (
+      rol === "administrador" ? (
+        <RolForm />
+      ) : (
+        <Navigate to="/no-autorizado" />
+      )
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
 
         <Route
           path="/usuarios/crear"

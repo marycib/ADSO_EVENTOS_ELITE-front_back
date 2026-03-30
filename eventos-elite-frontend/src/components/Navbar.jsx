@@ -24,13 +24,21 @@ export const Navbar = ({ setIsAuth }) => {
         {(rol === "organizador" || rol === "administrador") && (
           <>
             <Link to="/organizador">Panel Organizador</Link>
+            <Link to="/ponentes">Ponentes</Link>
+            <Link to="/sesiones">Sesiones</Link>
           </>
         )}
 
         {/* 🔵 SOLO ADMIN */}
-        {rol === "administrador" && <Link to="/usuarios">Usuarios</Link>}
+        {rol === "administrador" && (
+          <>
+            <Link to="/usuarios">Usuarios</Link>
+            <Link to="/roles">Roles</Link>
+          </>
+        )}
 
         {/* 🔴 LOGOUT */}
+
         <button
           onClick={logout}
           className="bg-red-500 px-3 py-1 rounded hover:bg-red-600"

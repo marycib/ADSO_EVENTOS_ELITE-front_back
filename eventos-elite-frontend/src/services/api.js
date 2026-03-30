@@ -134,3 +134,168 @@ export const eliminarUsuario = (id) =>
     method: "DELETE",
     headers: { Authorization: `Bearer ${getToken()}` },
   }).then(handleResponse);
+
+  // =============================
+// ROLES
+// =============================
+export const getRoles = () =>
+  fetch(`${API}/roles`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }).then(handleResponse);
+
+export const getRolById = (id) =>
+  fetch(`${API}/roles/${id}`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }).then(handleResponse);
+
+export const crearRol = (data) =>
+  fetch(`${API}/roles/crear`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify(data),
+  }).then(handleResponse);
+
+export const actualizarRol = (id, data) =>
+  fetch(`${API}/roles/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify(data),
+  }).then(handleResponse);
+
+export const eliminarRol = (id) =>
+  fetch(`${API}/roles/${id}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }).then(handleResponse);
+
+  // =============================
+// PONENTES
+// =============================
+export const getPonentes = () =>
+  fetch(`${API}/ponentes`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }).then(handleResponse);
+
+export const getPonentePorId = (id) =>
+  fetch(`${API}/ponentes/${id}`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }).then(handleResponse);
+
+export const crearPonente = (data) =>
+  fetch(`${API}/ponentes/crear`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify(data),
+  }).then(handleResponse);
+
+export const actualizarPonente = (id, data) =>
+  fetch(`${API}/ponentes/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify(data),
+  }).then(handleResponse);
+
+export const eliminarPonente = (id) =>
+  fetch(`${API}/ponentes/${id}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }).then(handleResponse);
+
+  // =============================
+// SESIONES
+// =============================
+export const getSesiones = () =>
+  fetch(`${API}/sesiones/listar`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }).then(handleResponse);
+
+export const getSesionPorId = (id) =>
+  fetch(`${API}/sesiones/${id}`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }).then(handleResponse);
+
+export const crearSesion = (data) =>
+  fetch(`${API}/sesiones/crear`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify(data),
+  }).then(handleResponse);
+
+export const actualizarSesion = (id, data) =>
+  fetch(`${API}/sesiones/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify(data),
+  }).then(handleResponse);
+
+export const eliminarSesion = (id) =>
+  fetch(`${API}/sesiones/${id}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }).then(handleResponse);
+
+
+  // =============================
+// EVENTOS
+// =============================
+export const getEventoPorId = (id) =>
+  fetch(`${API}/eventos/${id}`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }).then(handleResponse);
+
+export const actualizarEvento = (id, data) =>
+  fetch(`${API}/eventos/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify(data),
+  }).then(handleResponse);
+
+export const eliminarEvento = (id) =>
+  fetch(`${API}/eventos/${id}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }).then(handleResponse);
+
+  // =============================
+// INSCRIPCIONES - GESTIÓN (organizador/admin)
+// =============================
+export const getInscritosPorEvento = (eventoId) =>
+  fetch(`${API}/eventos/${eventoId}/inscritos`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }).then(handleResponse);
+
+export const confirmarInscripcion = (id) =>
+  fetch(`${API}/inscripciones/${id}/confirmar`, {
+    method: "PATCH",
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }).then(handleResponse);
+
+export const emitirCertificado = (id) =>
+  fetch(`${API}/inscripciones/${id}/certificado`, {
+    method: "PATCH",
+    headers: { Authorization: `Bearer ${getToken()}` },
+  }).then(handleResponse);
+
+export const getEventosDisponibles = () =>
+  fetch(`${API}/eventos/disponibles`).then(handleResponse);
